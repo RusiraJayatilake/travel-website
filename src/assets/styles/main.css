@@ -1,0 +1,27 @@
+*{
+    scroll-behavior: smooth;
+}
+
+/* .discover-section{
+    margin:100px 0 0 0;
+} */
+
+.place-card{
+    position: relative;
+    width: 200px;
+    overflow: hidden;
+}
+
+.place-data{
+    position: absolute;
+    bottom: 1.5rem;
+    left: 1rem;
+}
+
+.card-img{
+    transition: .3s;
+}
+
+.card-img:hover{
+    transform: 1.1;
+}

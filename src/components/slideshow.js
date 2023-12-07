@@ -1,7 +1,17 @@
 import React, { useState, useEffect } from 'react';
+import { useSpring, animated } from 'react-spring';
 
 const Slideshow = ({ images, interval }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
+
+  const fade = useSpring({
+    opacity: 1,
+    from: { opacity: 0 },
+    config: { duration: 1000 },
+    onRest: () => {
+      setCurrentIndex((prevIndex) => (prevIndex + 1) % images.length);
+    },
+  })
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -12,7 +22,14 @@ const Slideshow = ({ images, interval }) => {
   }, [currentIndex, interval, images]);
 
   return (
-    <div style={{ backgroundImage: `url(${images[currentIndex]})`, backgroundSize: 'cover', height: '100vh' }}></div>
+    <animated.div
+      style={{
+        ...fade,
+        backgroundImage: `url(${images[currentIndex]})`,
+        backgroundSize: 'cover',
+        height: '100vh',
+      }}
+    ></animated.div>
   );
 };
 
